@@ -26,5 +26,37 @@ namespace LeetCodeSolutions
 
             return result;
         }
+
+        public static int LengthOfLongestSubstring(string s)
+        {
+            int maxLenght = 0;
+            int currLength = 0;
+            int startingIndex = 0;
+
+            List<char> chars = new List<char>();
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (!chars.Contains(s[i]))
+                {
+                    chars.Add(s[i]);
+                    currLength++;
+                }
+                else
+                {
+                    chars.Clear();
+                    currLength = 0;
+
+                    i = startingIndex++;
+                }
+
+                if (maxLenght < currLength)
+                {
+                    maxLenght = currLength;
+                }
+            }
+
+            return maxLenght;
+        }
     }
 }
