@@ -99,5 +99,13 @@ namespace LeetCodeSolutions
 
             return expectedSum - currentSum;
         }
+
+        public static bool IsAnagram(string s, string t)
+        {
+            s = String.Concat(s.OrderBy(x => x));
+            t = String.Concat(t.OrderBy(x => x));
+
+            return s == t;
+        }
     }
 }
