@@ -71,5 +71,33 @@ namespace LeetCodeSolutions
             }
             return stack.Count == 0;
         }
+
+        public static bool ContainsDuplicate(int[] nums)
+        {
+            HashSet<int> uniqueNums = new HashSet<int>(nums);
+
+            if (nums.Length == uniqueNums.Count)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public static int MissingNumber(int[] nums)
+        {
+            int expectedSum = 0;
+            int currentSum = 0;
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                expectedSum += i + 1;
+                currentSum += nums[i];
+            }
+
+            return expectedSum - currentSum;
+        }
     }
 }
