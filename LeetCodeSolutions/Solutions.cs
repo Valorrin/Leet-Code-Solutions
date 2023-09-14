@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -155,6 +156,29 @@ namespace LeetCodeSolutions
             }
 
             return sum;
+        }
+
+        public static int[] TopKFrequent(int[] nums, int k)
+        {
+            Dictionary<int, int> dict = new Dictionary<int, int>();
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                dict[nums[i]] = dict.GetValueOrDefault(nums[i], 0) + 1;
+            }
+
+            int[] result = new int[k];
+
+            foreach (var item in dict.OrderByDescending(item => item.Value))
+            {
+                k -= 1;
+                if (k >= 0)
+                    result[k] = item.Key;
+                else
+                    break;
+            }
+
+            return result;
         }
     }
 }
