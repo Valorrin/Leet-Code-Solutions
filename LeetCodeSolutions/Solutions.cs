@@ -107,5 +107,24 @@ namespace LeetCodeSolutions
 
             return s == t;
         }
+
+        public static IList<IList<string>> GroupAnagrams(string[] strs)
+        {
+            Dictionary<string, IList<string>> anagramPairs = new Dictionary<string, IList<string>>();
+
+            foreach (string str in strs) 
+            {
+                string key = String.Concat(str.OrderBy(x => x));
+
+                if (!anagramPairs.ContainsKey(key))
+                {
+                    anagramPairs[key] = new List<string>();
+                }
+
+                anagramPairs[key].Add(str);
+            }
+
+            return anagramPairs.Values.ToList();
+        }
     }
 }
