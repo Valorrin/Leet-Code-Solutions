@@ -126,5 +126,35 @@ namespace LeetCodeSolutions
 
             return anagramPairs.Values.ToList();
         }
+
+        public static int RomanToInt(string s)
+        {
+            int sum = 0;
+
+            Dictionary<char, int> dict = new Dictionary<char, int>();
+   
+            dict.Add('I', 1);
+            dict.Add('V', 5);
+            dict.Add('X', 10);
+            dict.Add('L', 50);
+            dict.Add('C', 100);
+            dict.Add('D', 500);
+            dict.Add('M', 1000);
+
+            for (int i = 0; i < s.Length; i++)
+            {
+
+                if (i + 1 < s.Length && dict[s[i + 1]] > dict[s[i]])
+                {
+                    sum -= dict[s[i]];
+                }
+                else
+                {
+                    sum += dict[s[i]];
+                }
+            }
+
+            return sum;
+        }
     }
 }
