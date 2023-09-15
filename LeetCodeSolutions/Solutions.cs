@@ -180,5 +180,26 @@ namespace LeetCodeSolutions
 
             return result;
         }
+
+        public static void Rotate(int[] nums, int k)
+        {
+            int[] result = new int[nums.Length];
+
+            for (int i = 0; i < k; i++)
+            {
+                result = new int[nums.Length];
+
+                for (int j = 1; j < nums.Length; j++)
+                {
+                    result[j] = nums[j - 1];
+                }
+
+                result[0] = nums[nums.Length - 1];
+
+                nums = result;
+            }
+
+            Console.WriteLine(String.Join(',', result));
+        }
     }
 }
