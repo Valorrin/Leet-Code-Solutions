@@ -11,7 +11,8 @@ namespace LeetCodeSolutions
             // Console.WriteLine(Solutions.LengthOfLongestSubstring("pwwkew").ToString());
             // Console.WriteLine(Solutions.RomanToInt("III"));
             // Console.WriteLine(Solutions.TopKFrequent(new int[] { 1, 1, 1, 2, 2, 3 }, 2));
-            Solutions.Rotate(new int[] { -1, -100, 3, 99 }, 2);
+            // Solutions.Rotate(new int[] { -1, -100, 3, 99 }, 2);
+            Solutions.ProductExceptSelf(new int[] { 1, 2, 3, 4 });
         }
     }
 }

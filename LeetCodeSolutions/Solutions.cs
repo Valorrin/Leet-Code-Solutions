@@ -201,5 +201,45 @@ namespace LeetCodeSolutions
 
             Console.WriteLine(String.Join(',', result));
         }
+
+        public static int[] ProductExceptSelf(int[] nums)
+        {
+            int length = nums.Length;
+
+            int[] result = new int[length];
+            int[] leftProduct = new int[length];
+            int[] rightProduct = new int[length];
+
+            for (int i = 0, product = 1; i < length; i++)
+            {
+                product *= nums[i];
+                leftProduct[i] = product;
+            }
+
+            for (int i = nums.Length - 1, product = 1; i >= 0; i--)
+            {
+                product *= nums[i];
+                rightProduct[i] = product;
+            }
+
+            for (int i = 0; i < length; i++)
+            {
+                if (i == 0)
+                {
+                    result[0] = rightProduct[1];
+                }
+                else if (i == length - 1)
+                {
+                    result[i] = leftProduct[length - 2];
+                }
+                else
+                {
+                    result[i] = leftProduct[i-1] * rightProduct[i+1];
+                }
+            }
+
+
+            return result;
+        }
     }
 }
