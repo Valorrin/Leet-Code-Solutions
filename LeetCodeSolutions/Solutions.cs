@@ -241,5 +241,52 @@ namespace LeetCodeSolutions
 
             return result;
         }
+
+        public bool IsValidSudoku(char[][] board)
+        {
+            HashSet<char>[] rowDigits = new HashSet<char>[9];
+            HashSet<char>[] colDigits = new HashSet<char>[9];
+            HashSet<char>[] boxDigits = new HashSet<char>[9];
+
+            for (int i = 0; i < 9; i++)
+            {
+                rowDigits[i] = new HashSet<char>();
+                colDigits[i] = new HashSet<char>();
+                boxDigits[i] = new HashSet<char>();
+            }
+
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    char element = board[i][j];
+
+                    if (element == '.')
+                    {
+                        continue;
+                    }
+
+                    if (!rowDigits[i].Add(element))
+                    {
+                        return false;
+                    }
+
+                    if (!colDigits[j].Add(element))
+                    {
+                        return false;
+                    }
+
+                    int box = (3 * (i / 3)) + (j / 3);
+
+                    if (!boxDigits[box].Add(element))
+                    {
+                        return false;
+                    }
+
+                }
+            }
+
+            return true;
+        }
     }
 }
