@@ -242,7 +242,7 @@ namespace LeetCodeSolutions
             return result;
         }
 
-        public bool IsValidSudoku(char[][] board)
+        public static bool IsValidSudoku(char[][] board)
         {
             HashSet<char>[] rowDigits = new HashSet<char>[9];
             HashSet<char>[] colDigits = new HashSet<char>[9];
@@ -287,6 +287,45 @@ namespace LeetCodeSolutions
             }
 
             return true;
+        }
+
+        public static int LongestConsecutive(int[] nums)
+        {
+            if (nums.Length == 0)
+            {
+                return 0;
+            }
+
+            int max = 0;
+            int current = 1;
+
+            Array.Sort(nums);
+
+            HashSet<int> numsHs = new HashSet<int>(nums);
+            nums = numsHs.ToArray();
+
+            for (int i = 0; i < nums.Length - 1; i++)
+            {
+                if (nums[i]+1 == nums[i+1])
+                {
+                    current++;
+                }
+                else
+                {
+                    if (max < current)
+                    {
+                        max = current;
+                    }
+                    current = 1;
+                }
+            }
+
+            if (current > max)
+            {
+                max = current;
+            }
+
+            return max;
         }
     }
 }
