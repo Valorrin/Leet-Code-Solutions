@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace LeetCodeSolutions
@@ -327,5 +328,26 @@ namespace LeetCodeSolutions
 
             return max;
         }
+
+        public static bool IsPalindrome(string s)
+        {
+            s = s.ToLower().Trim();
+            s = String.Concat(Array.FindAll(s.ToCharArray(), Char.IsLetterOrDigit));
+
+            char[] sArray = s.ToCharArray();
+            Array.Reverse(sArray);
+            string reverseString = new string(sArray);
+
+            if (s == reverseString)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
     }
 }
