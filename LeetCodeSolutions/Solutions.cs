@@ -408,5 +408,24 @@ namespace LeetCodeSolutions
             return row;
         }
 
+        public static int LengthOfLastWord(string s)
+        {
+            s = s.Trim();
+
+            int length = 0;
+
+            for (int i = s.Length - 1; i >= 0; i--)
+            {
+
+                if (s[i] == ' ')
+                {
+                    break;
+                }
+                length++;
+            }
+
+            return length;
+        }
+
     }
 }
