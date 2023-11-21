@@ -471,5 +471,32 @@ namespace LeetCodeSolutions
 
             return res;
         }
+
+        public bool IsHappy(int n)
+        {
+            Dictionary<int, bool> map = new Dictionary<int, bool>();
+            while (!map.ContainsKey(n))
+            {
+                map.Add(n, true);
+                if (n == 1)
+                {
+                    return true;
+                }
+                n = SumOfDigitSquare(n);
+            }
+            return false;
+        }
+
+        int SumOfDigitSquare(int n)
+        {
+            int currentDigit = 0, sum = 0;
+            while (n > 0)
+            {
+                currentDigit = n % 10;
+                n = n / 10;
+                sum += currentDigit * currentDigit;
+            }
+            return sum;
+        }
     }
 }
