@@ -528,5 +528,10 @@ namespace LeetCodeSolutions
             return result;
 
         }
+
+        public bool CanWinNim(int n)
+        {
+            return n % 4 != 0;
+        }
     }
 }
