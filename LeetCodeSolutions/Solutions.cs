@@ -115,7 +115,7 @@ namespace LeetCodeSolutions
         {
             Dictionary<string, IList<string>> anagramPairs = new Dictionary<string, IList<string>>();
 
-            foreach (string str in strs) 
+            foreach (string str in strs)
             {
                 string key = String.Concat(str.OrderBy(x => x));
 
@@ -135,7 +135,7 @@ namespace LeetCodeSolutions
             int sum = 0;
 
             Dictionary<char, int> dict = new Dictionary<char, int>();
-   
+
             dict.Add('I', 1);
             dict.Add('V', 5);
             dict.Add('X', 10);
@@ -236,7 +236,7 @@ namespace LeetCodeSolutions
                 }
                 else
                 {
-                    result[i] = leftProduct[i-1] * rightProduct[i+1];
+                    result[i] = leftProduct[i - 1] * rightProduct[i + 1];
                 }
             }
 
@@ -308,7 +308,7 @@ namespace LeetCodeSolutions
 
             for (int i = 0; i < nums.Length - 1; i++)
             {
-                if (nums[i]+1 == nums[i+1])
+                if (nums[i] + 1 == nums[i + 1])
                 {
                     current++;
                 }
@@ -548,4 +548,46 @@ namespace LeetCodeSolutions
 
             return true;
         }
+
+        public static string LongestPalindrome(string s)
+        {
+            string result = "";
+            int resultLength = 0;
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                int l = i;
+                int r = i;
+                int l2 = i;
+                int r2 = i + 1;
+
+                while (l >= 0 && r < s.Length && s[l] == s[r])
+                {
+                    if (resultLength < r - l + 1)
+                    {
+                        resultLength = r - l + 1;
+                        result = s.Substring(l, resultLength);
+                    }
+
+                    l--;
+                    r++;
+                }
+
+                while (l2 >= 0 && r2 < s.Length && s[l2] == s[r2])
+                {
+                    if (resultLength < r2 - l2 + 1)
+                    {
+                        resultLength = r2 - l2 + 1;
+                        result = s.Substring(l2, resultLength);
+                    }
+
+                    l2--;
+                    r2++;
+                }
+
+            }
+            return result;
+
+        }
+    }
 }
