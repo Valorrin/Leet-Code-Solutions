@@ -606,5 +606,41 @@ namespace LeetCodeSolutions
 
             return -1;
         }
+
+        public static bool SearchMatrix(int[][] matrix, int target)
+        {
+            int lowRow = 0;
+            int highRow = matrix.GetLength(0) - 1;
+
+            while (lowRow <= highRow)
+            {
+                int currentRow = lowRow + (highRow - lowRow) / 2;
+                int value = matrix[currentRow][0];
+                int lastRowElement = matrix[currentRow].Last();
+
+                if (value == target) return true;
+                else if (target < value) highRow = currentRow - 1;
+                else if (target > value && target > lastRowElement) lowRow = currentRow + 1;
+                else
+                {
+                    int highRowElement = matrix[currentRow].Length - 1;
+                    int lowRowElement = 0;
+
+                    while (lowRowElement <= highRowElement)
+                    {
+                        int currentRowIndex = lowRowElement + (highRowElement - lowRowElement) / 2;
+                        int value2 = matrix[currentRow][currentRowIndex];
+
+                        if (value2 == target) return true;
+                        else if (target < value2) highRowElement = currentRowIndex - 1;
+                        else lowRowElement = currentRowIndex + 1;
+                    }
+
+                    return false;
+                }
+            }
+
+            return false;
+        }
     }
 }
