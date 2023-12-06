@@ -589,5 +589,22 @@ namespace LeetCodeSolutions
             return result;
 
         }
+
+        public static int BinarySearch(int[] nums, int target)
+        {
+            int low = 0;
+            int high = nums.Length - 1;
+
+            while (low <= high)
+            {
+                int middle = high - (high - low) / 2;
+
+                if (nums[middle] == target) return middle;
+                else if (target < nums[middle]) high = middle - 1;
+                else low = middle + 1;
+            }
+
+            return -1;
+        }
     }
 }
