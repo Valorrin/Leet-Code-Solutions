@@ -679,5 +679,47 @@ namespace LeetCodeSolutions
             }
             return target;
         }
+
+        public static int Search(int[] nums, int target)
+        {
+            int[] numsOriginal = new int[nums.Length];
+            Array.Copy(nums, numsOriginal, nums.Length);
+
+            int minElement = nums.Min();
+            int index = Array.IndexOf(nums, minElement);
+
+            int[] temp = new int[index];
+
+            for (int i = 0; i < index; i++)
+            {
+                temp[i] = nums[i];
+            }
+
+            for (int i = 0; i < nums.Length - index; i++)
+            {
+                nums[i] = nums[i + index];
+            }
+
+            for (int i = 0; i < index; i++)
+            {
+                nums[nums.Length - index + i] = temp[i];
+            }
+
+
+            int low = 0;
+            int high = nums.Length - 1;
+
+            while (low <= high)
+            {
+                int middle = high - (high - low) / 2;
+                int value = nums[middle];
+
+                if (target == value) return Array.IndexOf(numsOriginal, value);
+                else if (target < value) high = middle - 1;
+                else low = middle + 1;
+            }
+
+            return -1;
+        }
     }
 }
