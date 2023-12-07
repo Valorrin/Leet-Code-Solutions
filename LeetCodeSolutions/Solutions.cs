@@ -642,5 +642,42 @@ namespace LeetCodeSolutions
 
             return false;
         }
+
+        public static int FindMin(int[] nums)
+        {
+            int low = 0;
+            int high = nums.Length - 1;
+            int target = nums.Min();
+
+            while (low <= high)
+            {
+                int current = low + (high - low) / 2;
+                int value = nums[current];
+
+                if (value == target)
+                {
+                    int[] temp = new int[current];
+
+                    for (int i = 0; i < current; i++)
+                    {
+                        temp[i] = nums[i];
+                    }
+
+                    for (int i = current; i < nums.Length; i++)
+                    {
+                        nums[i - current] = nums[i];
+                    }
+
+                    for (int i = 0; i < temp.Length; i++)
+                    {
+                        nums[nums.Length - current + i] = temp[i];
+                    }
+                    return target;
+                }
+                else if (value < target) high = current - 1;
+                else low = current + 1;
+            }
+            return target;
+        }
     }
 }
