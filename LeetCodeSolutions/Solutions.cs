@@ -721,5 +721,52 @@ namespace LeetCodeSolutions
 
             return -1;
         }
+
+        public class TimeMap
+        {
+            private readonly Dictionary<string, IList<(int time, string value)>> map = new();
+
+            public void Set(string key, string value, int timestamp)
+            {
+                if (!map.ContainsKey(key))
+                {
+                    map[key] = new List<(int, string)>();
+                }
+
+                map[key].Add((timestamp, value));
+            }
+
+            public string Get(string key, int timestamp)
+            {
+                if (!map.ContainsKey(key))
+                {
+                    return string.Empty;
+                }
+
+                var list = map[key];
+                var left = 0;
+                var right = list.Count - 1;
+
+                while (left <= right)
+                {
+                    var mid = (right + left) / 2;
+                    if (list[mid].time == timestamp)
+                    {
+                        return list[mid].value;
+                    }
+
+                    if (list[mid].time <= timestamp)
+                    {
+                        left = mid + 1;
+                    }
+                    else
+                    {
+                        right = mid - 1;
+                    }
+                }
+
+                return left == 0 ? string.Empty : list[left - 1].value;
+            }
+        }
     }
 }
