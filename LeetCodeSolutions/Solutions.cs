@@ -812,5 +812,47 @@ namespace LeetCodeSolutions
 
             return dummyHead.next;
         }
+
+        public IList<IList<int>> ThreeSum(int[] nums)
+        {
+            List<List<int>> result = new List<List<int>>();
+
+            int target = 0;
+
+            Array.Sort(nums);
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (i > 0 && nums[i] == nums[i-1])
+                {
+                    continue;
+                }
+
+                int left = i+1;
+                int right = nums.Length - 1;
+
+                while (left > right) 
+                {
+                    int sum = nums[left] + nums[i] + nums[right];
+                    if (sum == target)
+                    {
+                        result.Add(new List<int>() { nums[left], nums[i], nums[right] });
+
+                        left++;
+                        right--;
+                    }
+                    else if (sum < target)
+                    {
+                        left++;
+                    }
+                    else
+                    {
+                        right--;
+                    }
+                }
+            }
+
+            return result;
+        }
     }
 }
