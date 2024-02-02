@@ -14,7 +14,8 @@ namespace LeetCodeSolutions
             // Solutions.Rotate(new int[] { -1, -100, 3, 99 }, 2);
             // Solutions.ProductExceptSelf(new int[] { 1, 2, 3, 4 });
             // Console.WriteLine(Solutions.LongestConsecutive(new int[] { 1, 2, 0, 1 }));
-            Console.WriteLine(Solutions.IsPalindrome("A man, a plan, a canal: Panama"));
+            // Console.WriteLine(Solutions.IsPalindrome("A man, a plan, a canal: Panama"));
+
         }
     }
 }
